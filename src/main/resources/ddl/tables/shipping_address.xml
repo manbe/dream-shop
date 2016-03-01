@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="illcko (generated)" id="1456799893374-3">
+        <createTable tableName="shipping_address">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="flat" type="INT"/>
+            <column name="house" type="VARCHAR(5)"/>
+            <column name="postal_code" type="VARCHAR(5)"/>
+            <column name="street" type="VARCHAR(50)"/>
+            <column name="customer_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

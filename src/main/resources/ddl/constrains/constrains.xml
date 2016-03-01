@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="illcko (generated)" id="1456796982209-6">
+        <createIndex indexName="FK_1958ap58w8p180vhai8ocpa4u" tableName="shop_order">
+            <column name="customer_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="illcko (generated)" id="1456796982209-7">
+        <createIndex indexName="FK_5gjhq2fmknk50h8859nf0bcmx" tableName="order_item">
+            <column name="order_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="illcko (generated)" id="1456796982209-8">
+        <createIndex indexName="FK_6mb37lsa9bvqksbkj3a21ioq6" tableName="order_item">
+            <column name="stock_keeping_unit_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="illcko (generated)" id="1456796982209-9">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="shop_order" constraintName="FK_1958ap58w8p180vhai8ocpa4u" referencedColumnNames="id" referencedTableName="customer"/>
+    </changeSet>
+    <changeSet author="illcko (generated)" id="1456796982209-10">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_item" constraintName="FK_5gjhq2fmknk50h8859nf0bcmx" referencedColumnNames="id" referencedTableName="shop_order"/>
+    </changeSet>
+    <changeSet author="illcko (generated)" id="1456796982209-11">
+        <addForeignKeyConstraint baseColumnNames="stock_keeping_unit_id" baseTableName="order_item" constraintName="FK_6mb37lsa9bvqksbkj3a21ioq6" referencedColumnNames="id" referencedTableName="stock_keeping_unit"/>
+    </changeSet>
+    <changeSet author="illcko (generated)" id="1456799893374-13">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="shipping_address" constraintName="FK_g6538l115arvyc2vcky8ld32o" referencedColumnNames="id" referencedTableName="customer"/>
+    </changeSet>
+
+</databaseChangeLog>
