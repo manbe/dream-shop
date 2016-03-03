@@ -134,33 +134,14 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <!--<plugin>-->
-                <!--<groupId>org.codehaus.mojo</groupId>-->
-                <!--<artifactId>exec-maven-plugin</artifactId>-->
-                <!--<version>1.4.0</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<phase>package</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>java</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-                <!--<configuration>-->
-                    <!--<mainClass>com.seleznov.task.shop.DreamShopApplicationTests</mainClass>-->
-                    <!--<executable>java</executable>-->
-                    <!--<skip></skip>-->
-                <!--</configuration>-->
-                <!--&lt;!&ndash;<dependencies>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<groupId>com.seleznov.task</groupId>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<artifactId>dream-shop</artifactId>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<version>${project.version}</version>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<type>jar</type>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
-                <!--&lt;!&ndash;</dependencies>&ndash;&gt;-->
-            <!--</plugin>-->
-
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <mainClass>com.seleznov.task.shop.DreamShopApplication</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

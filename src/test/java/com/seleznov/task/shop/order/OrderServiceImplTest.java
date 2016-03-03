@@ -20,6 +20,7 @@ import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -96,7 +97,9 @@ public class OrderServiceImplTest {
     @Test
     public void testMakeOrder() throws Exception {
         ShopOrder shopOrder = orderService.makeOrder(ID, order);
-        assertEquals(Integer.valueOf(5),shopOrder.getCustomer().getBalance());
+        assertEquals(Integer.valueOf(5), shopOrder.getCustomer().getBalance());
+        verify(customerService, times(1)).updateCustomer(customer);
+        verify(stockKeepingUnitService, times(1)).decreaseStockKeepingUnitAmount(ID, AMOUNT);
 
     }
 }
