@@ -20,15 +20,17 @@ public class TotalPriceCalculationUtilTest {
 
         OrderItem orderItem2 = new OrderItem();
         orderItem2.setActualPrice(1);
+        orderItem2.setAmount(2);
         orderItems.add(orderItem2);
 
         OrderItem orderItem1 = new OrderItem();
         orderItem1.setActualPrice(3);
+        orderItem1.setAmount(1);
         orderItems.add(orderItem1);
 
         shopOrder.setOrderItems(orderItems);
 
         int totalPrice = TotalPriceCalculationUtil.calculateTotalPrice(shopOrder);
-        assertEquals(4, totalPrice);
+        assertEquals(5, totalPrice);
     }
 }

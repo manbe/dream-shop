@@ -7,7 +7,7 @@ import java.util.Collection;
  */
 public interface StockKeepingUnitService {
 
-    StockKeepingUnit decreaseStockKeepingUnitAmount(StockKeepingUnit stockKeepingUnit, Integer decreaseAmount);
+    StockKeepingUnit decreaseStockKeepingUnitAmount(Long stockKeepingUnitId, Integer decreaseAmount);
 
     Collection<StockKeepingUnit> getAllStockKeepingUnits();
 

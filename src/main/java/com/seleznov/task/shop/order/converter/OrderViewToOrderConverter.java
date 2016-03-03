@@ -24,9 +24,9 @@ public class OrderViewToOrderConverter implements Converter<OrderView, ShopOrder
                     OrderItem orderItem = modelMapper.map(orderItemView, OrderItem.class);
                     orderItem.setId(null);
                     orderItem.setShopOrder(shopOrder);
-                    StockKeepingUnit stockKeepingUnit = modelMapper.map(orderItemView.getStockKeepingUnitView(), StockKeepingUnit.class);
+                    StockKeepingUnit stockKeepingUnit = new StockKeepingUnit();
+                    stockKeepingUnit.setId(orderItemView.getStockKeepingUnitId());
                     orderItem.setStockKeepingUnit(stockKeepingUnit);
-                    orderItem.setActualPrice(stockKeepingUnit.getPrice() * orderItemView.getAmount());
                     return orderItem;
                 })
                 .collect(Collectors.toSet());

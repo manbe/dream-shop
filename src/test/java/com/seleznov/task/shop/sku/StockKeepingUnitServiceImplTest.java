@@ -46,13 +46,13 @@ public class StockKeepingUnitServiceImplTest {
 
     @Test
     public void testDecreaseStockKeepingUnitAmount() throws Exception {
-        StockKeepingUnit stockKeepingUnitResult = stockKeepingUnitService.decreaseStockKeepingUnitAmount(this.stockKeepingUnit, 3);
+        StockKeepingUnit stockKeepingUnitResult = stockKeepingUnitService.decreaseStockKeepingUnitAmount(ID, 3);
         assertEquals(Integer.valueOf(2), stockKeepingUnitResult.getAmount());
     }
 
     @Test(expected = IllegalDecreaseAmountException.class)
     public void testDecreaseStockKeepingUnitAmountWithIllegalValue() throws Exception {
-        stockKeepingUnitService.decreaseStockKeepingUnitAmount(this.stockKeepingUnit, 6);
+        stockKeepingUnitService.decreaseStockKeepingUnitAmount(ID, 6);
     }
 
     @Test

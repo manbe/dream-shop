@@ -47,21 +47,14 @@ public class OrderToShopOrderViewConverterTest {
         OrderToOrderViewConverter orderToOrderViewConverter = new OrderToOrderViewConverter();
         OrderView orderView = orderToOrderViewConverter.convert(shopOrder);
         assertEquals(ID, orderView.getId());
-        assertEquals(PRICE, orderView.getTotalPrice());
+        assertEquals(Integer.valueOf(PRICE*ORDER_AMOUNT), orderView.getTotalPrice());
 
 
         OrderItemView orderItemView = orderView.getOrderItemViews().iterator().next();
         assertEquals(ID, orderItemView.getId());
         assertEquals(PRICE, orderItemView.getActualPrice());
         assertEquals(ORDER_AMOUNT, orderItemView.getAmount());
-        assertStockKeepingView(orderItemView);
+        assertEquals(ID, orderItemView.getStockKeepingUnitId());
     }
 
-    private void assertStockKeepingView(OrderItemView orderItemView) {
-        StockKeepingUnitView stockKeepingUnitView = orderItemView.getStockKeepingUnitView();
-        assertEquals(ID, stockKeepingUnitView.getId());
-        assertEquals(AMOUNT, stockKeepingUnitView.getAmount());
-        assertEquals(NAME, stockKeepingUnitView.getName());
-        assertEquals(PRICE, stockKeepingUnitView.getPrice());
-    }
 }

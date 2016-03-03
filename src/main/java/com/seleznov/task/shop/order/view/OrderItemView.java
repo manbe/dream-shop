@@ -1,7 +1,5 @@
 package com.seleznov.task.shop.order.view;
 
-import com.seleznov.task.shop.sku.StockKeepingUnitView;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -13,7 +11,7 @@ public class OrderItemView {
     private Long id;
 
     @NotNull
-    private StockKeepingUnitView stockKeepingUnitView;
+    private Long stockKeepingUnitId;
 
     @Min(0)
     private Integer actualPrice;
@@ -28,14 +26,6 @@ public class OrderItemView {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public StockKeepingUnitView getStockKeepingUnitView() {
-        return stockKeepingUnitView;
-    }
-
-    public void setStockKeepingUnitView(StockKeepingUnitView stockKeepingUnitView) {
-        this.stockKeepingUnitView = stockKeepingUnitView;
     }
 
     public Integer getActualPrice() {
@@ -54,6 +44,14 @@ public class OrderItemView {
         this.amount = amount;
     }
 
+    public Long getStockKeepingUnitId() {
+        return stockKeepingUnitId;
+    }
+
+    public void setStockKeepingUnitId(Long stockKeepingUnitId) {
+        this.stockKeepingUnitId = stockKeepingUnitId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -62,7 +60,7 @@ public class OrderItemView {
         OrderItemView that = (OrderItemView) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (stockKeepingUnitView != null ? !stockKeepingUnitView.equals(that.stockKeepingUnitView) : that.stockKeepingUnitView != null)
+        if (stockKeepingUnitId != null ? !stockKeepingUnitId.equals(that.stockKeepingUnitId) : that.stockKeepingUnitId != null)
             return false;
         if (actualPrice != null ? !actualPrice.equals(that.actualPrice) : that.actualPrice != null) return false;
         return !(amount != null ? !amount.equals(that.amount) : that.amount != null);
@@ -72,10 +70,9 @@ public class OrderItemView {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (stockKeepingUnitView != null ? stockKeepingUnitView.hashCode() : 0);
+        result = 31 * result + (stockKeepingUnitId != null ? stockKeepingUnitId.hashCode() : 0);
         result = 31 * result + (actualPrice != null ? actualPrice.hashCode() : 0);
         result = 31 * result + (amount != null ? amount.hashCode() : 0);
         return result;
     }
-
 }

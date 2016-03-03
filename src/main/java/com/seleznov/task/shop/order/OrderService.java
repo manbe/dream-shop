@@ -9,7 +9,7 @@ import java.util.Collection;
  */
 public interface OrderService {
 
-    Collection<ShopOrder> getAllOrders(Long customerId);
+    Collection<ShopOrder> getOrdersForCurrentCustomer(Long customerId);
 
     ShopOrder makeOrder(Long customerId, ShopOrder shopOrder);
 

@@ -4,7 +4,6 @@ import com.seleznov.task.shop.customer.view.CustomerView;
 import com.seleznov.task.shop.customer.view.ShippingAddressView;
 import com.seleznov.task.shop.order.OrderService;
 import com.seleznov.task.shop.order.model.ShopOrder;
-import com.seleznov.task.shop.order.view.OrderItemView;
 import com.seleznov.task.shop.order.view.OrderView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
@@ -59,7 +58,7 @@ public class CustomerController {
 
     @RequestMapping(value = "/{id}/order", method = RequestMethod.GET)
     public ResponseEntity<Collection<OrderView>> getCustomerOrderView(@PathVariable Long id) {
-        Set<OrderView> orderViews = orderService.getAllOrders(id).stream()
+        Set<OrderView> orderViews = orderService.getOrdersForCurrentCustomer(id).stream()
                 .map(order -> conversionService.convert(order, OrderView.class))
                 .collect(Collectors.toSet());
         return new ResponseEntity<>(orderViews, HttpStatus.OK);

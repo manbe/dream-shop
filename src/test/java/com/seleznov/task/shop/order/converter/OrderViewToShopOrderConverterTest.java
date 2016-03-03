@@ -34,13 +34,7 @@ public class OrderViewToShopOrderConverterTest {
         orderItemView.setId(ID);
         orderItemView.setAmount(ORDER_AMOUNT);
 
-        StockKeepingUnitView stockKeepingUnitView = new StockKeepingUnitView();
-        stockKeepingUnitView.setId(ID);
-        stockKeepingUnitView.setAmount(AMOUNT);
-        stockKeepingUnitView.setPrice(PRICE);
-        stockKeepingUnitView.setName(NAME);
-
-        orderItemView.setStockKeepingUnitView(stockKeepingUnitView);
+        orderItemView.setStockKeepingUnitId(ID);
 
         orderView.setOrderItemViews(Collections.singletonList(orderItemView));
 
@@ -53,16 +47,10 @@ public class OrderViewToShopOrderConverterTest {
         OrderItem orderItem = shopOrder.getOrderItems().iterator().next();
 
         assertNull(orderItem.getId());
-        assertEquals(Integer.valueOf(PRICE*ORDER_AMOUNT), orderItem.getActualPrice());
         assertEquals(ORDER_AMOUNT, orderItem.getAmount());
 
         StockKeepingUnit stockKeepingUnit = orderItem.getStockKeepingUnit();
         assertEquals(ID, stockKeepingUnit.getId());
-        assertEquals(PRICE, stockKeepingUnit.getPrice());
-        assertEquals(AMOUNT, stockKeepingUnit.getAmount());
-        assertEquals(NAME, stockKeepingUnit.getName());
-
-
 
     }
 }

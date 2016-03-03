@@ -19,8 +19,8 @@ public class StockKeepingUnitServiceImpl implements StockKeepingUnitService {
 
     @Override
     @Transactional
-    public StockKeepingUnit decreaseStockKeepingUnitAmount(StockKeepingUnit stockKeepingUnit, Integer decreaseAmount) {
-        stockKeepingUnit.setVersion(getStockKeepingUnit(stockKeepingUnit.getId()).getVersion());
+    public StockKeepingUnit decreaseStockKeepingUnitAmount(Long stockKeepingUnitId, Integer decreaseAmount) {
+        StockKeepingUnit stockKeepingUnit = getStockKeepingUnit(stockKeepingUnitId);
         Integer currentAmount = stockKeepingUnit.getAmount();
         Integer newAmount = currentAmount - decreaseAmount;
         if (newAmount < 0) {

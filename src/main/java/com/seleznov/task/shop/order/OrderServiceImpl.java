@@ -6,6 +6,7 @@ import com.seleznov.task.shop.exception.IllegalOrderException;
 import com.seleznov.task.shop.exception.IllegalSKUException;
 import com.seleznov.task.shop.order.model.OrderItem;
 import com.seleznov.task.shop.order.model.ShopOrder;
+import com.seleznov.task.shop.sku.StockKeepingUnit;
 import com.seleznov.task.shop.sku.StockKeepingUnitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,36 +32,28 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public Collection<ShopOrder> getAllOrders(Long customerId) {
+    public Collection<ShopOrder> getOrdersForCurrentCustomer(Long customerId) {
         return orderRepository.findAll();
     }
 
     @Override
-    @Transactional(rollbackFor=Exception.class)
+    @Transactional(rollbackFor = Exception.class)
     public ShopOrder makeOrder(Long customerId, ShopOrder shopOrder) {
         Customer customer = customerService.getCustomer(customerId);
 
         Integer totalPrice = TotalPriceCalculationUtil.calculateTotalPrice(shopOrder);
+
+        shopOrder.getOrderItems()
+                .forEach(orderItem -> {
+                    StockKeepingUnit stockKeepingUnit = stockKeepingUnitService.decreaseStockKeepingUnitAmount(orderItem.getStockKeepingUnit().getId(), orderItem.getAmount());
+                    orderItem.setStockKeepingUnit(stockKeepingUnit);
+                });
 
         Integer newBalance = customer.getBalance() - totalPrice;
 
         if (newBalance < 0) {
             throw new IllegalOrderException("Total price of shopOrder " + totalPrice + " is bigger then customer balance " + customer.getBalance());
         }
-
-        Predicate<OrderItem> isNotSameSKU = item -> !item.getStockKeepingUnit().getPrice().equals((stockKeepingUnitService.getStockKeepingUnit(item.getStockKeepingUnit().getId()).getPrice()));
-
-        long countOfWrongSKU = shopOrder.getOrderItems().stream()
-                .filter(isNotSameSKU)
-                .count();
-
-        if(countOfWrongSKU > 0){
-            throw new IllegalSKUException("There are "+ countOfWrongSKU + " store keeping units that have ton relevant data");
-        }
-
-        shopOrder.getOrderItems()
-                .forEach(orderItem -> stockKeepingUnitService.decreaseStockKeepingUnitAmount(orderItem.getStockKeepingUnit(), orderItem.getAmount()));
-
         shopOrder.setCustomer(customer);
 
         customer.setBalance(newBalance);

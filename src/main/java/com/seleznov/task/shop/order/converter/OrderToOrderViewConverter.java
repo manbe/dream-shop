@@ -23,7 +23,7 @@ public class OrderToOrderViewConverter implements Converter<ShopOrder, OrderView
         Set<OrderItemView> orderItemViews = shopOrder.getOrderItems().stream()
                 .map(orderItem -> {
                     OrderItemView orderItemView = modelMapper.map(orderItem, OrderItemView.class);
-                    orderItemView.setStockKeepingUnitView(modelMapper.map(orderItem.getStockKeepingUnit(), StockKeepingUnitView.class));
+                    orderItemView.setStockKeepingUnitId(orderItem.getStockKeepingUnit().getId());
                     return orderItemView;
                 })
                 .collect(Collectors.toSet());

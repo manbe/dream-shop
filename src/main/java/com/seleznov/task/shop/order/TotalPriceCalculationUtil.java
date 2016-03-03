@@ -9,7 +9,7 @@ public class TotalPriceCalculationUtil {
 
     public static Integer calculateTotalPrice(ShopOrder shopOrder){
         return shopOrder.getOrderItems().stream()
-                .mapToInt(orderItem -> orderItem.getActualPrice())
+                .mapToInt(orderItem -> orderItem.getActualPrice()*orderItem.getAmount())
                 .sum();
     }
 }
