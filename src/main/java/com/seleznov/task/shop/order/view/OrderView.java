@@ -2,6 +2,7 @@ package com.seleznov.task.shop.order.view;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -14,11 +15,10 @@ public class OrderView implements Serializable{
 
     private Long id;
 
-    @NotNull
-    @Min(0)
     private Integer totalPrice;
 
     @NotEmpty
+    @Valid
     private Collection<OrderItemView> orderItemViews;
 
     public Long getId() {

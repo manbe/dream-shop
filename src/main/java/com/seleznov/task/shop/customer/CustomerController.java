@@ -5,6 +5,8 @@ import com.seleznov.task.shop.customer.view.ShippingAddressView;
 import com.seleznov.task.shop.order.OrderService;
 import com.seleznov.task.shop.order.model.ShopOrder;
 import com.seleznov.task.shop.order.view.OrderView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpStatus;
@@ -24,15 +26,13 @@ import java.util.stream.Collectors;
 @RequestMapping("shop/api/customer")
 public class CustomerController {
 
+    private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
+
     @Autowired
     private CustomerService customerService;
 
     @Autowired
     private ConversionService conversionService;
-
-    @Autowired
-    private OrderService orderService;
-
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Collection<CustomerView>> getCustomers() {
@@ -56,24 +56,7 @@ public class CustomerController {
         return new ResponseEntity<>(shippingAddressViews, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}/order", method = RequestMethod.GET)
-    public ResponseEntity<Collection<OrderView>> getCustomerOrderView(@PathVariable Long id) {
-        Set<OrderView> orderViews = orderService.getOrdersForCurrentCustomer(id).stream()
-                .map(order -> conversionService.convert(order, OrderView.class))
-                .collect(Collectors.toSet());
-        return new ResponseEntity<>(orderViews, HttpStatus.OK);
-    }
 
-    @RequestMapping(value = "/{id}/order", method = RequestMethod.POST)
-    public ResponseEntity makeOrder(@PathVariable Long id, @RequestBody @Valid OrderView orderView, BindingResult result) {
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(result.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
-        }
-        ShopOrder shopOrder = conversionService.convert(orderView, ShopOrder.class);
-        ShopOrder createdShopOrder = orderService.makeOrder(id, shopOrder);
-
-        return new ResponseEntity(conversionService.convert(createdShopOrder, OrderView.class), HttpStatus.OK);
-    }
 
 
 
