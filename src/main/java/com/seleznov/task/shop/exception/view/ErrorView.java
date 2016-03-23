@@ -8,10 +8,12 @@ import java.util.Collection;
  */
 public class ErrorView {
 
-    private final String code;
-    private final String message;
+    private String code;
+    private String message;
     private Collection<FieldErrorView> fieldErrors;
 
+    public ErrorView() {
+    }
 
     public ErrorView(String code) {
         this(code, null);
@@ -49,5 +51,15 @@ public class ErrorView {
         return fieldErrors;
     }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setFieldErrors(Collection<FieldErrorView> fieldErrors) {
+        this.fieldErrors = fieldErrors;
+    }
 }

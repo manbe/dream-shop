@@ -3,10 +3,8 @@ package com.seleznov.task.shop.order.view;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 
 /**
  * @author illcko
@@ -19,7 +17,7 @@ public class OrderView implements Serializable{
 
     @NotEmpty
     @Valid
-    private Collection<OrderItemView> orderItemViews;
+    private Set<OrderItemView> orderItemViews;
 
     public Long getId() {
         return id;
@@ -37,11 +35,11 @@ public class OrderView implements Serializable{
         this.totalPrice = totalPrice;
     }
 
-    public Collection<OrderItemView> getOrderItemViews() {
+    public Set<OrderItemView> getOrderItemViews() {
         return orderItemViews;
     }
 
-    public void setOrderItemViews(Collection<OrderItemView> orderItemViews) {
+    public void setOrderItemViews(Set<OrderItemView> orderItemViews) {
         this.orderItemViews = orderItemViews;
     }
 

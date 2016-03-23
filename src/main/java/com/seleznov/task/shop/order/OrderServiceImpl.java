@@ -38,8 +38,6 @@ public class OrderServiceImpl implements OrderService {
     public ShopOrder makeOrder(Long customerId, ShopOrder shopOrder) {
         Customer customer = customerService.getCustomer(customerId);
 
-
-
         shopOrder.getOrderItems()
                 .forEach(orderItem -> {
                     StockKeepingUnit stockKeepingUnit = stockKeepingUnitService.decreaseStockKeepingUnitAmount(orderItem.getStockKeepingUnit().getId(), orderItem.getAmount());

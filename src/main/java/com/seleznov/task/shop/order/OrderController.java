@@ -2,6 +2,7 @@ package com.seleznov.task.shop.order;
 
 import com.seleznov.task.shop.order.model.ShopOrder;
 import com.seleznov.task.shop.order.view.OrderView;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpStatus;

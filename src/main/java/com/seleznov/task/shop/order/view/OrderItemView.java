@@ -1,5 +1,7 @@
 package com.seleznov.task.shop.order.view;
 
+import io.swagger.annotations.ApiModel;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 

@@ -36,7 +36,7 @@ public class OrderViewToShopOrderConverterTest {
 
         orderItemView.setStockKeepingUnitId(ID);
 
-        orderView.setOrderItemViews(Collections.singletonList(orderItemView));
+        orderView.setOrderItemViews(Collections.singleton(orderItemView));
 
         OrderViewToOrderConverter orderViewToOrderConverter = new OrderViewToOrderConverter();
 

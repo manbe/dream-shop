@@ -9,6 +9,8 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+
 
 /**
  * @author illcko
@@ -19,14 +21,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @TestPropertySource(locations="classpath:test.properties")
 public abstract class BaseIntegrationTest {
 
+    public static final String HTTP_LOCALHOST = "http://localhost:";
+    public static final String SHOP_API = "/shop/api";
+
     @Value("${local.server.port}")
-    public int targetWebServerPort;
+    protected int targetWebServerPort;
 
     protected String BASE_URL;
 
     @Before
     public void createURLs(){
-        BASE_URL = "http://localhost:"+targetWebServerPort + "/shop/api";
+        BASE_URL = HTTP_LOCALHOST +targetWebServerPort + SHOP_API;
     }
 
 
