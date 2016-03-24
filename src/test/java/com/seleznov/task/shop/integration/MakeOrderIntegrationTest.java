@@ -45,7 +45,6 @@ public class MakeOrderIntegrationTest extends BaseIntegrationTest {
 
 
     @Test
-    @Transactional
     public void makeSuccessOrderTest() {
         OrderView orderView = prepareOrderView(2, STOCK_KEEPING_UNIT_ID);
 
