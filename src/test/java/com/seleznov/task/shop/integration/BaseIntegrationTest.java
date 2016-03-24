@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -19,6 +20,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 @WebIntegrationTest("server.port:0")
 @SpringApplicationConfiguration(classes = {IntegrationTestConfig.class, DreamShopApplication.class})
 @TestPropertySource(locations="classpath:test.properties")
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public abstract class BaseIntegrationTest {
 
     public static final String HTTP_LOCALHOST = "http://localhost:";

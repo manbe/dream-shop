@@ -1,6 +1,9 @@
 package com.seleznov.task.shop.customer.view;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Set;
 
@@ -11,10 +14,11 @@ public class CustomerView {
 
     private Long id;
 
+    @NotBlank
     private String name;
-
+    @NotBlank
     private String email;
-
+    @NotNull
     private Integer balance;
 
     @Valid

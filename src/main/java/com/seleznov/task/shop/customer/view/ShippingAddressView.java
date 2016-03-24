@@ -1,5 +1,7 @@
 package com.seleznov.task.shop.customer.view;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
@@ -14,9 +16,11 @@ public class ShippingAddressView {
     private String postalCode;
 
     @Size(max = 50)
+    @NotBlank
     private String street;
 
     @Size(max = 5)
+    @NotBlank
     private String house;
 
     @Min(1)

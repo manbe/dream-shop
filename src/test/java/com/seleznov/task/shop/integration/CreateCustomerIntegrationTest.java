@@ -6,12 +6,14 @@ import com.seleznov.task.shop.customer.view.CustomerView;
 import com.seleznov.task.shop.customer.view.ShippingAddressView;
 import com.seleznov.task.shop.exception.ErrorConstants;
 import com.seleznov.task.shop.exception.view.ErrorView;
+import com.seleznov.task.shop.exception.view.FieldErrorView;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collection;
 import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
@@ -37,7 +39,16 @@ public class CreateCustomerIntegrationTest extends BaseIntegrationTest {
 
     @Test
     public void createCustomerTest() {
-        CustomerView customerView = createCustomerView();
+
+        CustomerView customerView = new CustomerView();
+        ShippingAddressView shippingAddressView = new ShippingAddressView();
+        customerView.setShippingAddressViews(Collections.singleton(shippingAddressView));
+        ResponseEntity<ErrorView> validationErrors = restTemplate.postForEntity(BASE_URL + CUSTOMER, customerView, ErrorView.class);
+        final Collection<FieldErrorView> fieldErrors = validationErrors.getBody().getFieldErrors();
+        assertEquals(6, fieldErrors.size());
+
+
+        customerView = createCustomerView();
 
         //Check that we can't update existing customer
         ResponseEntity<ErrorView> errorViewResponseEntity = restTemplate.postForEntity(BASE_URL + CUSTOMER, customerView, ErrorView.class);

@@ -1,5 +1,8 @@
 package com.seleznov.task.shop.integration.config;
 
+import liquibase.integration.spring.SpringLiquibase;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,12 +10,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
+import javax.sql.DataSource;
+
 /**
  * @author illcko
  */
 @Configuration
 @EnableAutoConfiguration
 public class IntegrationTestConfig {
+
+    @Value("${liquibase.change-log}")
+    private String changeLog;
+
+    @Autowired
+    private DataSource dataSource;
 
     @Bean
     public RestTemplate restTemplate(){
@@ -23,5 +34,35 @@ public class IntegrationTestConfig {
             }});
         return restTemplate;
     }
+
+
+//    @Bean
+//    public SpringLiquibase liquibase() {
+//        SpringLiquibase liquibase = new SpringLiquibase();
+//        liquibase.setDropFirst(true);
+//        liquibase.setChangeLog(changeLog);
+//        liquibase.setDataSource(dataSource);
+//        return liquibase;
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
