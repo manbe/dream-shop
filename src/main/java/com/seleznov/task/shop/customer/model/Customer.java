@@ -1,6 +1,5 @@
 package com.seleznov.task.shop.customer.model;
 
-import com.seleznov.task.shop.order.model.ShopOrder;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -20,7 +19,7 @@ public class Customer{
     private Long id;
 
     @Version
-    private Long version;
+    private Long version = 0l;
 
     @NotBlank
     @Column(length = 50)

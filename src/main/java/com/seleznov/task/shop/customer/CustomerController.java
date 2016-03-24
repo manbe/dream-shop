@@ -1,5 +1,6 @@
 package com.seleznov.task.shop.customer;
 
+import com.seleznov.task.shop.customer.model.Customer;
 import com.seleznov.task.shop.customer.view.CustomerView;
 import com.seleznov.task.shop.customer.view.ShippingAddressView;
 import com.seleznov.task.shop.order.OrderService;
@@ -40,6 +41,12 @@ public class CustomerController {
                 .map(customer -> conversionService.convert(customer, CustomerView.class))
                 .collect(Collectors.toSet());
         return new ResponseEntity<>(customers, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<CustomerView> createCustomer(@Valid @RequestBody CustomerView customerView) {
+        Customer customer = customerService.createCustomer(conversionService.convert(customerView, Customer.class));
+        return new ResponseEntity<>(conversionService.convert(customer, CustomerView.class), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

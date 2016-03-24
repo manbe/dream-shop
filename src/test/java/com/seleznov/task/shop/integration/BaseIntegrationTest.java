@@ -23,6 +23,7 @@ public abstract class BaseIntegrationTest {
 
     public static final String HTTP_LOCALHOST = "http://localhost:";
     public static final String SHOP_API = "/shop/api";
+    public static final String CUSTOMER = "/customer/";
 
     @Value("${local.server.port}")
     protected int targetWebServerPort;

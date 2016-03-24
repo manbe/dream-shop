@@ -26,10 +26,10 @@ public class CustomExceptionHandler{
 
     private static final Logger log = LoggerFactory.getLogger(CustomExceptionHandler.class);
 
-    @ExceptionHandler({IllegalOrderException.class, IllegalDecreaseAmountException.class})
+    @ExceptionHandler({IllegalOrderException.class, IllegalDecreaseAmountException.class, IllegalCustomerForCreateException.class})
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorView processMethodIllegalOrderException(IllegalOrderException exception) {
+    public ErrorView processMethodIllegalOrderException(RuntimeException exception) {
         log.error(exception.getMessage(), exception);
         return new ErrorView(ErrorConstants.ERR_OPERATION_DENIED, exception.getMessage());
     }

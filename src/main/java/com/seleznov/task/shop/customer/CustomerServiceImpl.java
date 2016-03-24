@@ -1,11 +1,13 @@
 package com.seleznov.task.shop.customer;
 
 import com.seleznov.task.shop.customer.model.Customer;
+import com.seleznov.task.shop.exception.IllegalCustomerForCreateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.Objects;
 
 /**
  * @author illcko
@@ -31,5 +33,13 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer getCustomer(Long id) {
         return customerRepository.findOne(id);
+    }
+
+    @Override
+    public Customer createCustomer(Customer customer) {
+        if(!Objects.isNull(customer.getId())){
+            throw new IllegalCustomerForCreateException("Customer should not have an id");
+        };
+        return customerRepository.save(customer);
     }
 }

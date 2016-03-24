@@ -1,6 +1,7 @@
 package com.seleznov.task.shop.customer;
 
 import com.seleznov.task.shop.customer.model.Customer;
+import com.seleznov.task.shop.exception.IllegalCustomerForCreateException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,5 +58,19 @@ public class CustomerServiceImplTest {
     public void testGetCustomer() throws Exception {
         Customer resultCustomer = customerService.getCustomer(ID);
         assertEquals(customer,resultCustomer);
+    }
+
+    @Test(expected = IllegalCustomerForCreateException.class)
+    public void testCreateCustomerWithExistingId() throws Exception {
+        customerService.createCustomer(customer);
+    }
+
+    @Test
+    public void testCreateCustomer() throws Exception {
+        customer.setId(null);
+        String name = "name";
+        customer.setName(name);
+        customer = customerService.createCustomer(this.customer);
+        assertEquals(name, customer.getName());
     }
 }

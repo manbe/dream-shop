@@ -1,6 +1,8 @@
 package com.seleznov.task.shop.customer.view;
 
+import javax.validation.Valid;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * @author illcko
@@ -15,7 +17,8 @@ public class CustomerView {
 
     private Integer balance;
 
-    private Collection<ShippingAddressView> shippingAddressViews;
+    @Valid
+    private Set<ShippingAddressView> shippingAddressViews;
 
     public Long getId() {
         return id;
@@ -49,11 +52,11 @@ public class CustomerView {
         this.balance = balance;
     }
 
-    public Collection<ShippingAddressView> getShippingAddressViews() {
+    public Set<ShippingAddressView> getShippingAddressViews() {
         return shippingAddressViews;
     }
 
-    public void setShippingAddressViews(Collection<ShippingAddressView> shippingAddressViews) {
+    public void setShippingAddressViews(Set<ShippingAddressView> shippingAddressViews) {
         this.shippingAddressViews = shippingAddressViews;
     }
 

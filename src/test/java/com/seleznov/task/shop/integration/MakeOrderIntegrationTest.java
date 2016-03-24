@@ -33,7 +33,8 @@ public class MakeOrderIntegrationTest extends BaseIntegrationTest {
 
 
     public static final Long CUSTOMER_ID = 1l;
-    public static final String CUSTOMER_URL ="/customer/" + CUSTOMER_ID;
+
+    public static final String CUSTOMER_URL = CUSTOMER + CUSTOMER_ID;
     public static final String ORDER_URL = CUSTOMER_URL + "/order";
     public static final Integer CUSTOMER_BALANCE = 20;
     public static final Long STOCK_KEEPING_UNIT_ID = 1l;

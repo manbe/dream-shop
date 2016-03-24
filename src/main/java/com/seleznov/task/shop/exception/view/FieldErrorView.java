@@ -5,11 +5,14 @@ package com.seleznov.task.shop.exception.view;
  */
 public class FieldErrorView {
 
-    private final String objectName;
+    private String objectName;
 
-    private final String field;
+    private String field;
 
-    private final String message;
+    private String message;
+
+    public FieldErrorView() {
+    }
 
     public FieldErrorView(String objectName, String field, String message) {
         this.objectName = objectName;
@@ -27,5 +30,17 @@ public class FieldErrorView {
 
     public String getMessage() {
         return message;
+    }
+
+    public void setObjectName(String objectName) {
+        this.objectName = objectName;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
